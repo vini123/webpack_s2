@@ -1,2 +1,10 @@
-# webpack_s2
-webpack study
+# 使用
+
+``` javascript
+
+git clone xxx
+
+npm install
+
+npm test
+```
