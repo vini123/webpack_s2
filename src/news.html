@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title> <%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" type="text/css" href="//unpkg.com/iview/dist/styles/iview.css">
+  </head>
+  <body>
+  	<div id="app">
+		<div class="container-fluid header">
+			<div class="container">
+				<div class="nav">
+					<ul>
+						<li v-for="item in navdata">
+							<a :href="item.href" 
+							   v-text="item.text"
+							   :class="{active:item.active}">
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="reg-login">
+					<a>注册</a>
+					<a>登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+	  	<div id="tpl">
+
+	  	</div>
+
+	  	<div id="html">
+
+	  	</div>
+	 </div>
+  	<script src="//unpkg.com/vue/dist/vue.js"></script>
+  </body>
