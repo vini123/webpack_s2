@@ -14,7 +14,7 @@ var tpl = newstemplate.tpl({
 
 document.getElementById('tpl').innerHTML = tpl;
 
-// document.getElementById('html').innerHTML = newstemplate.tpl;
+document.getElementById('html').innerHTML = newstemplate.html;
 
 let vim  =	new Vue({
 				el:'#app',

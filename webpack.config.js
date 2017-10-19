@@ -1,6 +1,7 @@
 const HtmlPlugin = require('html-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
 
@@ -49,8 +50,17 @@ module.exports = {
 					]
 			},
 			{
-		      test: /\.tpl$/,
-		      use: {loader: 'ejs-loader'}
+		    	test: /\.tpl$/,
+		    	use: {loader: 'ejs-loader'}
+		    },
+		    {
+		    	test: /\.html$/,
+		    	use: [ {
+		    		loader: 'html-loader',
+		    		options: {
+		    			minimize: true
+		    		}
+		    	}],
 		    }
 		]
 	},
@@ -61,6 +71,12 @@ module.exports = {
 			template:'./src/index.html',
 			title: 'i like webpack',
 			inject:'body',
+			//只改动变动的文件
+			cache: true, 
+			minify: {
+				removeComments: true,
+				collapseWhitespace: false
+			},
 			chunks:['home']
 		}),
 
@@ -69,6 +85,12 @@ module.exports = {
 			template: './src/news.html',
 			title: 'just news',
 			inject: 'body',
+			//只改动变动的文件
+			cache: true, 
+			minify: {
+				removeComments: true,
+				collapseWhitespace: false
+			},
 			chunks: ['news']
 		}),
 
@@ -79,6 +101,19 @@ module.exports = {
 		new webpack.BannerPlugin('欢迎翻版，翻版必究'),
 
         // 压缩js
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin({
+        	output: {
+        			// 去掉注释内容
+					comments: false, 
+				}
+		}),
+
+        //压缩css代码
+		new OptimizeCssAssetsPlugin({
+			assetNameRegExp: /\.css/g,
+			cssProcessor: require('cssnano'),
+			cssProcessorOptions: { discardComments: {removeAll: true } },
+			canPrint: true
+		})
 	]
 }
