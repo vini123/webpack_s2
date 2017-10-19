@@ -26,9 +26,9 @@ npm test
   <span class="u-games"><%= usergames[key] %></span>
 <% } %>
 ```
-> 赋值我们用 **<%=  %>**
-> if条件语句我们用 **<% %>**
-> 更多语法 ……
+> 赋值我们用 **<%=  %>**  
+if条件语句我们用 **<% %>**  
+更多语法 ……
 
 使用模板：
 
@@ -66,4 +66,5 @@ npm install --save-dev ejs-loader
 npm test
 ```
 
+# html 模板
 
